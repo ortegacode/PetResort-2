@@ -182,6 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -292,6 +293,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\CustomerManager\Create.cshtml" />
+    <Content Include="Views\CustomerManager\Index.cshtml" />
+    <Content Include="Views\CustomerManager\Edit.cshtml" />
+    <Content Include="Views\CustomerManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +312,24 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetResort-Core\PetResort.Core.csproj">
+      <Project>{d6b9dd45-74ca-4801-9cad-c2c780bdfe6c}</Project>
+      <Name>PetResort.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PetResort.Data.InMemory\PetResort.Data.InMemory.csproj">
+      <Project>{6d59b43d-04ff-4cca-baca-303e5e93cad4}</Project>
+      <Name>PetResort.Data.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PetResort.Data.Sql\PetResort.Data.Sql.csproj">
+      <Project>{28bfca33-51c6-4f7a-9d61-2106c3edcd32}</Project>
+      <Name>PetResort.Data.Sql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PetResort.Services\PetResort.Services.csproj">
+      <Project>{f21f9d1b-5b26-4b9f-b405-450ece5bd80e}</Project>
+      <Name>PetResort.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
