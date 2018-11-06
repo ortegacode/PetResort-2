@@ -13,15 +13,23 @@ namespace PetResort.Core.Models
         public string Id { get; set; }
         [StringLength(20)]
         [DisplayName("First Name")]
+        [Required]
         public string FirstName { get; set; }
         [StringLength(20)]
         [DisplayName("Last Name")]
+        [Required]
         public string LastName { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public string City { get; set; }
+        [Required]
         public string State { get; set; }
+        [Required]
         public string Zipcode { get; set; }
+        [Required]
         public string PhoneNumber { get; set; }
 
         public Customer()  // constructor so everytime we create an instance of customer it generates an 

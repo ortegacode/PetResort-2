@@ -185,6 +185,7 @@
     <Compile Include="Controllers\CustomerManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PetManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -297,6 +298,10 @@
     <Content Include="Views\CustomerManager\Index.cshtml" />
     <Content Include="Views\CustomerManager\Edit.cshtml" />
     <Content Include="Views\CustomerManager\Delete.cshtml" />
+    <Content Include="Views\PetManager\Index.cshtml" />
+    <Content Include="Views\PetManager\Create.cshtml" />
+    <Content Include="Views\PetManager\Edit.cshtml" />
+    <Content Include="Views\PetManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
