@@ -5,16 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using PetResort.Core.Models;
 using PetResort.Data.InMemory;
+using PetResort.Core.ViewModels;
 
 namespace PetResort.WebUI.Controllers
 {
     public class CustomerManagerController : Controller
     {
         CustomerRepository context;  // created an instance(context) of our CustomerRepo
+        ServicesCategoryRepository servicesCategories; // so we can load from the db
 
         public  CustomerManagerController () // constructor 
         {
             context = new CustomerRepository(); // initiallizes that repo
+            servicesCategories = new ServicesCategoryRepository(); // initialized repo
         }
 
         // GET: CustomerManager
@@ -26,8 +29,14 @@ namespace PetResort.WebUI.Controllers
 
         public ActionResult Create()  // this view is to display the page in order to fill it out customer details
         {
-            Customer customer = new Customer();
-            return View(customer);
+            CustomerManagerViewModel viewModel = new CustomerManagerViewModel(); //created a reference to the viewmodel
+
+            //Customer customer = new Customer(); // replaced with
+            // return View(customer);
+
+            viewModel.Customer = new Customer();  // sends in an empty customer
+            viewModel.ServicesCategories = servicesCategories.Collection(); // sends in a list of categories from the db
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -55,7 +64,12 @@ namespace PetResort.WebUI.Controllers
             }
             else
             {
-                return View(customer);
+                CustomerManagerViewModel viewModel = new CustomerManagerViewModel();
+                viewModel.Customer = customer;
+                viewModel.ServicesCategories = servicesCategories.Collection();
+
+                //return View(customer);
+                return View(viewModel);
             }
         }
             

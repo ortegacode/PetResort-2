@@ -186,6 +186,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PetManagerController.cs" />
+    <Compile Include="Controllers\ServicesCategoryManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -302,6 +303,10 @@
     <Content Include="Views\PetManager\Create.cshtml" />
     <Content Include="Views\PetManager\Edit.cshtml" />
     <Content Include="Views\PetManager\Delete.cshtml" />
+    <Content Include="Views\ServicesCategoryManager\Index.cshtml" />
+    <Content Include="Views\ServicesCategoryManager\Create.cshtml" />
+    <Content Include="Views\ServicesCategoryManager\Edit.cshtml" />
+    <Content Include="Views\ServicesCategoryManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Pet.cs" />
+    <Compile Include="Models\ServicesCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CustomerManagerViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -79,10 +79,5 @@ namespace PetResort.Data.InMemory
             }
         }
 
-
-
-
-
-
     }
 }
