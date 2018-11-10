@@ -5,16 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using PetResort.Core.Models;
 using PetResort.Data.InMemory;
+using PetResort.Core.Contracts;
 
 namespace PetResort.WebUI.Controllers
 {
     public class CustomerManagerController : Controller
     {
-        CustomerRepository context;  // created an instance(context) of our CustomerRepo
+        //CustomerRepository context;  created an instance(context) of our CustomerRepo
+        //InMemoryRepository<Customer> context; / removed after the IRepo interface
 
-        public  CustomerManagerController () // constructor 
+        IRepository<Customer> context;
+
+        public  CustomerManagerController(IRepository<Customer>customerContext) // constructor /injected interfaces we want
         {
-            context = new CustomerRepository(); // initiallizes that repo
+            //context = new CustomerRepository(); // initiallizes that repo
+            //context = new InMemoryRepository<Customer>();  // after IRepo
+
+            context = customerContext;
         }
 
         // GET: CustomerManager

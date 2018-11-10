@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="InMemoryRepository.cs" />
+    <Compile Include="PetRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

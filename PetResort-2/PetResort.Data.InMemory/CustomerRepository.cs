@@ -9,7 +9,7 @@ using PetResort.Core.Models;
 
 namespace PetResort.Data.InMemory
 {
-    public class CustomerRepository
+    public class CustomerRepository 
     {
         ObjectCache cache = MemoryCache.Default; // created our Object Cache
         List<Customer> customers; //  a list of Customer called customers
