@@ -1,6 +1,7 @@
 using PetResort.Core.Contracts;
 using PetResort.Core.Models;
 using PetResort.Data.InMemory;
+using PetResort.Data.Sql;
 using System;
 
 using Unity;
@@ -45,9 +46,9 @@ namespace PetResort.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IRepository<Customer>, InMemoryRepository<Customer>>();
-            container.RegisterType<IRepository<Pet>, InMemoryRepository<Pet>>();
-            container.RegisterType<IRepository<Service>, InMemoryRepository<Service>>();
+            container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
+            container.RegisterType<IRepository<Pet>, SQLRepository<Pet>>();
+            container.RegisterType<IRepository<Service>, SQLRepository<Service>>();
 
         }
     }
