@@ -5,22 +5,26 @@ using System.Web;
 using System.Web.Mvc;
 using PetResort.Core.Models;
 using PetResort.Data.InMemory;
+using PetResort.Core.Contracts;
 
 namespace PetResort.WebUI.Controllers
 {
     public class CustomerManagerController : Controller
     {
-        CustomerRepository context;  // created an instance(context) of our CustomerRepo
+       /* IRepository<Customer> clients; */ // created an instance(context) of our CustomerRepo
+        IRepository<Pet> context;
+        IRepository<Customer> clients;
+        IRepository<Service> work;
 
-        public  CustomerManagerController () // constructor 
+        public  CustomerManagerController (IRepository<Pet> petContext, IRepository<Customer> clients, IRepository<Service> workService) // constructor 
         {
-            context = new CustomerRepository(); // initiallizes that repo
+            this.clients = clients;
         }
 
         // GET: CustomerManager
         public ActionResult Index()
         {
-            List<Customer> customers = context.Collection().ToList(); // list of customers from our collection and converts that to list
+            List<Customer> customers = clients.Collection().ToList(); // list of customers from our collection and converts that to list
             return View(customers);  // sends customers to the view
         }
 
@@ -39,8 +43,8 @@ namespace PetResort.WebUI.Controllers
             }
             else
             {
-                context.Insert(customer); // insert the customer into the collection(context)
-                context.Commit();   // save (commit) changes to collection
+                clients.Insert(customer); // insert the customer into the collection(context)
+                clients.Commit();   // save (commit) changes to collection
 
                 return RedirectToAction("Index"); // returns you back to the index page
             }
@@ -48,7 +52,7 @@ namespace PetResort.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Customer customer = context.Find(Id);  // will try to load the customer using the find() by Id
+            Customer customer = clients.Find(Id);  // will try to load the customer using the find() by Id
             if (customer == null)
             {
                 return HttpNotFound();  // if no customer found
@@ -62,7 +66,7 @@ namespace PetResort.WebUI.Controllers
             [HttpPost]
             public ActionResult Edit(Customer customer, string Id) // the updated customer along with the Id
         {
-            Customer customerToEdit = context.Find(Id);  // loaded the customer we are editing from the db using the Id
+            Customer customerToEdit = clients.Find(Id);  // loaded the customer we are editing from the db using the Id
             if (customer == null)
             {
                 return HttpNotFound();  // if no customer found
@@ -85,7 +89,7 @@ namespace PetResort.WebUI.Controllers
                 customerToEdit.Zipcode = customer.Zipcode;
                 customerToEdit.PhoneNumber = customer.PhoneNumber;
 
-                context.Commit(); // save changes
+                clients.Commit(); // save changes
 
                 return RedirectToAction("Index");  // send them back to the index page
             }
@@ -93,7 +97,7 @@ namespace PetResort.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Customer customerToDelete = context.Find(Id);  // will load the customer using the find() by Id
+            Customer customerToDelete = clients.Find(Id);  // will load the customer using the find() by Id
             if (customerToDelete == null)
             {
                 return HttpNotFound();  // if no customer found
@@ -108,15 +112,15 @@ namespace PetResort.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            Customer customerToDelete = context.Find(Id);  // will load the customer using the find() by Id
+            Customer customerToDelete = clients.Find(Id);  // will load the customer using the find() by Id
             if (customerToDelete == null)
             {
                 return HttpNotFound();  // if no customer found
             }
             else
             {
-                context.Delete(Id);
-                context.Commit();
+                clients.Delete(Id);
+                clients.Commit();
                 return RedirectToAction("Index");
             }
         }
