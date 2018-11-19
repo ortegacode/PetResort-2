@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "PetManager", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -50,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PetPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               <img />
+               <input type="file" id="file" name="file" class="form-control" />
             </div>
         </div>
 

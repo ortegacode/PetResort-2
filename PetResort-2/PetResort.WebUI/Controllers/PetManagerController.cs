@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PetResort.Data.InMemory;
 using PetResort.Core.Models;
 using PetResort.Core.Contracts;
+using System.IO;
 
 namespace PetResort.WebUI.Controllers
 {
@@ -37,7 +38,7 @@ namespace PetResort.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Pet pet)
+        public ActionResult Create(Pet pet, HttpPostedFileBase file)  //added the http"" file for the pic
         {
             if (!ModelState.IsValid)
             {
@@ -45,6 +46,13 @@ namespace PetResort.WebUI.Controllers
             }
             else
             {
+                if (file!= null)
+                {
+                    pet.PetPhoto = pet.Id + Path.GetExtension(file.FileName);  // saves it using the petId instead of the uploaded filename because it will always have a unique filename ( user cant upload images with the same filename ) + Path(using.IO) allows us to get the file extension, gives us the full filename ( pet.id and extension name from file)
+
+                    file.SaveAs(Server.MapPath("//Content//PetPhotos//") + pet.PetPhoto);
+                }
+
                 context.Insert(pet);
                 context.Commit();
 
@@ -66,7 +74,7 @@ namespace PetResort.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Pet pet, string Id)
+        public ActionResult Edit(Pet pet, string Id, HttpPostedFileBase file)
         {
             Pet petToEdit = context.Find(Id);
             if (pet == null)
@@ -80,9 +88,15 @@ namespace PetResort.WebUI.Controllers
                     return View(pet);
                 }
 
+                if (file != null)
+                {
+                    petToEdit.PetPhoto = pet.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//PetPhotos//") + petToEdit.PetPhoto);
+                }
+
                 petToEdit.PetName = pet.PetName;
                 petToEdit.Notes = pet.Notes;
-                petToEdit.PetPhoto = pet.PetPhoto;
+                //petToEdit.PetPhoto = pet.PetPhoto;  //removed ( done above)
 
                 context.Commit();
 
